@@ -37,17 +37,44 @@ module Enumerable
     end
   end
 
-    def my_any?(arg = nil)
-      if block_given?
-        true_counter = 0
-        my_each { |item| true_counter += 1 if yield item }
-        true_counter > 0
-      elsif arg.nil?
-        my_any? { |item| item }
-      else
-        # rubocop:disable Style/CaseEquality
-        my_any? { |item| arg === item }
-        # rubocop:enable Style/CaseEquality
-      end
+  def my_any?(arg = nil)
+    if block_given?
+      true_counter = 0
+      my_each { |item| true_counter += 1 if yield item }
+      true_counter > 0
+    elsif arg.nil?
+      my_any? { |item| item }
+    else
+      # rubocop:disable Style/CaseEquality
+      my_any? { |item| arg === item }
+      # rubocop:enable Style/CaseEquality
     end
   end
+  def my_any?(arg = nil)
+    if block_given?
+      true_counter = 0
+      my_each { |item| true_counter += 1 if yield item }
+      true_counter > 0
+    elsif arg.nil?
+      my_any? { |item| item }
+    else
+      # rubocop:disable Style/CaseEquality
+      my_any? { |item| arg === item }
+      # rubocop:enable Style/CaseEquality
+    end
+  end
+
+  def my_none?(arg = nil)
+    if block_given?
+      true_counter = 0
+      my_each { |item| true_counter += 1 if yield item }
+      true_counter.zero?
+    elsif arg.nil?
+      my_none? { |item| item }
+    else
+      # rubocop:disable Style/CaseEquality
+      my_none? { |item| arg === item }
+      # rubocop:enable Style/CaseEquality
+    end
+  end
+end
