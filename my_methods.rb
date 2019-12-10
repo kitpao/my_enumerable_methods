@@ -36,4 +36,18 @@ module Enumerable
       # rubocop:enable Style/CaseEquality
     end
   end
-end
+
+    def my_any?(arg = nil)
+      if block_given?
+        true_counter = 0
+        my_each { |item| true_counter += 1 if yield item }
+        true_counter > 0
+      elsif arg.nil?
+        my_any? { |item| item }
+      else
+        # rubocop:disable Style/CaseEquality
+        my_any? { |item| arg === item }
+        # rubocop:enable Style/CaseEquality
+      end
+    end
+  end
