@@ -25,9 +25,9 @@ module Enumerable
 
   def my_all?(arg = nil)
     if block_given?
-      counter = 0
-      my_each { |item| counter += 1 unless yield item }
-      counter.zero?
+      false_counter = 0
+      my_each { |item| false_counter += 1 unless yield item }
+      false_counter.zero?
     elsif arg.nil?
       my_all? { |item| item }
     else
