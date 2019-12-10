@@ -78,4 +78,12 @@ module Enumerable
       # rubocop:enable Style/CaseEquality
     end
   end
+
+  def my_map
+    return to_enum(:my_map) unless block_given?
+
+    new_arr = []
+    size.times { |pos| new_arr << (yield to_a[pos]) }
+    new_arr
+  end
 end
