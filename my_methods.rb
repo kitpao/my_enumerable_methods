@@ -114,7 +114,10 @@ def multiply_els(arr)
   arr.my_inject(:*)
 end
 
-print multiply_els([2, 4, 5])
+puts multiply_els([2, 4, 5])
+
+my_proc = proc { |arg1| print "#{arg1}! " }
+[1, 2, 3].my_map(&my_proc)
 
 # rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
 # rubocop:enable Style/CaseEquality
