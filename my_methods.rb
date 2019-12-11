@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength,
 # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
 # rubocop:disable Style/CaseEquality
 module Enumerable
@@ -119,6 +118,11 @@ module Enumerable
   end
 end
 
-# rubocop:enable Metrics/ModuleLength,
+def multiply_els(arr)
+  arr.my_inject(:*)
+end
+
+print multiply_els([2, 4, 5])
+
 # rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
 # rubocop:enable Style/CaseEquality
