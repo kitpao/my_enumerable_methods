@@ -86,4 +86,38 @@ module Enumerable
     size.times { |pos| new_arr << (yield to_a[pos]) }
     new_arr
   end
+
+  def my_inject(first_arg = nil, second_arg = nil)
+    arr = to_a
+    if block_given?
+      if first_arg.nil?
+        acc = arr[0]
+        arr.my_each_with_index { |item, index| acc = yield(acc, item) if index.positive? }
+      else
+        return to_enum(:my_inject) unless first_arg.is_a? Integer
+
+        acc = first_arg
+        arr.my_each { |item| acc = yield(acc, item) }
+      end
+    elsif second_arg.nil?
+      return to_enum(:my_inject) unless first_arg.is_a? Symbol
+
+      acc = arr[0]
+      i = 1
+      while i < arr.size
+        acc = acc.send first_arg, arr[i]
+        i += 1
+      end
+    else
+      return to_enum(:my_inject) unless (first_arg.is_a? Integer) && (second_arg.is_a? Symbol)
+
+      acc = first_arg
+      i = 0
+      while i < arr.size
+        acc = acc.send second_arg, arr[i]
+        i += 1
+      end
+    end
+    acc
+  end
 end
