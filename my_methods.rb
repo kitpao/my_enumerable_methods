@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ModuleLength,
+# rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
+# rubocop:disable Style/CaseEquality
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -31,9 +34,7 @@ module Enumerable
     elsif arg.nil?
       my_all? { |item| item }
     else
-      # rubocop:disable Style/CaseEquality
       my_all? { |item| arg === item }
-      # rubocop:enable Style/CaseEquality
     end
   end
 
@@ -45,9 +46,7 @@ module Enumerable
     elsif arg.nil?
       my_any? { |item| item }
     else
-      # rubocop:disable Style/CaseEquality
       my_any? { |item| arg === item }
-      # rubocop:enable Style/CaseEquality
     end
   end
 
@@ -59,9 +58,7 @@ module Enumerable
     elsif arg.nil?
       my_none? { |item| item }
     else
-      # rubocop:disable Style/CaseEquality
       my_none? { |item| arg === item }
-      # rubocop:enable Style/CaseEquality
     end
   end
 
@@ -73,9 +70,7 @@ module Enumerable
     elsif arg.nil?
       my_count { |item| item }
     else
-      # rubocop:disable Style/CaseEquality
       my_count { |item| arg === item }
-      # rubocop:enable Style/CaseEquality
     end
   end
 
@@ -94,7 +89,7 @@ module Enumerable
         acc = arr[0]
         arr.my_each_with_index { |item, index| acc = yield(acc, item) if index.positive? }
       else
-        return to_enum(:my_inject) unless first_arg.is_a? Integer
+        return to_enum(:my_inject) unless (first_arg.is_a? Integer) || (first_arg.is_a? String)
 
         acc = first_arg
         arr.my_each { |item| acc = yield(acc, item) }
@@ -109,7 +104,9 @@ module Enumerable
         i += 1
       end
     else
-      return to_enum(:my_inject) unless (first_arg.is_a? Integer) && (second_arg.is_a? Symbol)
+      unless ((first_arg.is_a? Integer) || (first_arg.is_a? String)) && (second_arg.is_a? Symbol)
+        return to_enum(:my_inject)
+      end
 
       acc = first_arg
       i = 0
@@ -121,3 +118,7 @@ module Enumerable
     acc
   end
 end
+
+# rubocop:enable Metrics/ModuleLength,
+# rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
+# rubocop:enable Style/CaseEquality
