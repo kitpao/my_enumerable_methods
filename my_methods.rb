@@ -97,22 +97,14 @@ module Enumerable
       return to_enum(:my_inject) unless first_arg.is_a? Symbol
 
       acc = arr[0]
-      i = 1
-      while i < arr.size
-        acc = acc.send first_arg, arr[i]
-        i += 1
-      end
+      arr.my_each_with_index { |item, index| acc = acc.send first_arg, item if index.positive? }
     else
       unless ((first_arg.is_a? Integer) || (first_arg.is_a? String)) && (second_arg.is_a? Symbol)
         return to_enum(:my_inject)
       end
 
       acc = first_arg
-      i = 0
-      while i < arr.size
-        acc = acc.send second_arg, arr[i]
-        i += 1
-      end
+      arr.my_each { |item| acc = acc.send second_arg, item }
     end
     acc
   end
