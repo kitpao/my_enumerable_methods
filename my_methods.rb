@@ -73,11 +73,15 @@ module Enumerable
     end
   end
 
-  def my_map
+  def my_map(*block)
     return to_enum(:my_map) unless block_given?
 
     new_arr = []
-    size.times { |pos| new_arr << (yield to_a[pos]) }
+    if !block[0].nil?
+      size.times { |pos| new_arr << (block[0].call to_a[pos]) }
+    else
+      size.times { |pos| new_arr << (yield to_a[pos]) }
+    end
     new_arr
   end
 
@@ -114,10 +118,12 @@ def multiply_els(arr)
   arr.my_inject(:*)
 end
 
-puts multiply_els([2, 4, 5])
+puts "result of multiply_els: #{multiply_els([2, 4, 5])}"
 
-my_proc = proc { |arg1| print "#{arg1}! " }
-[1, 2, 3].my_map(&my_proc)
+my_proc = proc { |arg1| "#{arg1}! " }
+print "only proc: #{[1, 2, 3].my_map(&my_proc)}\n"
+print "ignore block and use proc: #{[1, 2, 3].my_map(my_proc) { |x| x + 1 }}\n"
+print "only block: #{[1, 2, 3].my_map { |x| x + 1 }}\n"
 
 # rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
 # rubocop:enable Style/CaseEquality
