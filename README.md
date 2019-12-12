@@ -79,7 +79,8 @@ See the [open issues](https://github.com/kitpao/my_enumerable_methods/issues) fo
   Project Link: [https://github.com/kitpao/my_enumerable_methods](https://github.com/kitpao/my_enumerable_methods)
 
 <p align="center">
-  Kitzia Paola Vidal Marroquin (kitpao) [kitpao](https://github.com/kitpao)
+  
+  Kitzia Paola Vidal Marroquin - [Github user: kitpao](https://github.com/kitpao)
 </p>
 <p align="center" style="display: flex; justify-content: center; align-items: center;">
     <a target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=kitpao91@gmail.com">
