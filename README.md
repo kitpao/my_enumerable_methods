@@ -35,7 +35,7 @@
 
 ## About The Project
 <small>(Click on the image to play with the code! See instructions in [Usage](#usage))</small>
-[![Product Name Screen Shot][product-screenshot]](http://gitpod.io/github.com/kitpao/my_enumerable_methods/tree/feature/my_methods_feature)
+[![Product Name Screen Shot][product-screenshot]](https://gitpod.io/github.com/kitpao/my_enumerable_methods)
 
 In this project we rebuild the following iterator methods used in the enumerator module:
 * #each -> #my_each
@@ -58,7 +58,7 @@ The project was developed using the following technologies:
 
 ## Usage
 
-Click on the image at the top or in the following [link](http://gitpod.io/github.com/kitpao/my_enumerable_methods/tree/feature/my_methods_feature),
+Click on the image at the top or in the following [link](https://gitpod.io/github.com/kitpao/my_enumerable_methods),
 
 In the left panel, select "my_methods.rb"
 
