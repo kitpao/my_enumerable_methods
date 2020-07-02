@@ -28,6 +28,7 @@
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
 * [Usage](#usage)
+* [Test](#test)
 * [Roadmap](#roadmap)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
@@ -68,6 +69,14 @@ You can try any method in the [About the Project](#about-the-project) section. A
 Click on the console and type ruby `my_methods.rb` and hit enter
 
 You will get the result at the end of the console
+
+## Test
+
+For the test, click on the image at the top or in the following [link](https://gitpod.io/github.com/kitpao/my_enumerable_methods),
+
+* Click on the console and type `gem install rspec` then press enter to begin the instalation process
+* Once the process is done, type `rspec` and press enter to see the 67 test for this game
+* You can see the test files by clicking on the left panel spec/my_methods_spec.rb
 
 ## Roadmap
 
