@@ -28,7 +28,7 @@ module Enumerable
   def my_all?(arg = nil)
     if block_given?
       false_counter = 0
-      my_each { |item| false_counter += 1 unless yield item }
+      to_a.my_each { |item| false_counter += 1 unless yield item }
       false_counter.zero?
     elsif arg.nil?
       my_all? { |item| item }
@@ -40,7 +40,7 @@ module Enumerable
   def my_any?(arg = nil)
     if block_given?
       true_counter = 0
-      my_each { |item| true_counter += 1 if yield item }
+      to_a.my_each { |item| true_counter += 1 if yield item }
       true_counter.positive?
     elsif arg.nil?
       my_any? { |item| item }
@@ -52,7 +52,7 @@ module Enumerable
   def my_none?(arg = nil)
     if block_given?
       true_counter = 0
-      my_each { |item| true_counter += 1 if yield item }
+      to_a.my_each { |item| true_counter += 1 if yield item }
       true_counter.zero?
     elsif arg.nil?
       my_none? { |item| item }
