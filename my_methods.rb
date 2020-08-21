@@ -6,14 +6,16 @@ module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
 
-    size.times { |pos| yield self[pos] }
+    arr = to_a
+    size.times { |pos| yield arr[pos] }
     self
   end
 
   def my_each_with_index
     return to_enum(:my_each) unless block_given?
 
-    size.times { |pos| yield self[pos], pos }
+    arr = to_a
+    size.times { |pos| yield arr[pos], pos }
     self
   end
 
@@ -28,7 +30,7 @@ module Enumerable
   def my_all?(arg = nil)
     if block_given?
       false_counter = 0
-      to_a.my_each { |item| false_counter += 1 unless yield item }
+      my_each { |item| false_counter += 1 unless yield item }
       false_counter.zero?
     elsif arg.nil?
       my_all? { |item| item }
@@ -40,7 +42,7 @@ module Enumerable
   def my_any?(arg = nil)
     if block_given?
       true_counter = 0
-      to_a.my_each { |item| true_counter += 1 if yield item }
+      my_each { |item| true_counter += 1 if yield item }
       true_counter.positive?
     elsif arg.nil?
       my_any? { |item| item }
@@ -52,7 +54,7 @@ module Enumerable
   def my_none?(arg = nil)
     if block_given?
       true_counter = 0
-      to_a.my_each { |item| true_counter += 1 if yield item }
+      my_each { |item| true_counter += 1 if yield item }
       true_counter.zero?
     elsif arg.nil?
       my_none? { |item| item }
@@ -98,7 +100,9 @@ module Enumerable
         arr.my_each { |item| acc = yield(acc, item) }
       end
     elsif second_arg.nil?
-      return to_enum(:my_inject) unless first_arg.is_a? Symbol
+      unless first_arg.is_a? Symbol
+        raise LocalJumpError.new("no block given")
+      end
 
       acc = arr[0]
       arr.my_each_with_index { |item, index| acc = acc.send first_arg, item if index.positive? }
