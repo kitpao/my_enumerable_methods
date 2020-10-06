@@ -38,7 +38,7 @@
 <small>(Click on the image to play with the code! See instructions in [Usage](#usage))</small>
 [![Product Name Screen Shot][product-screenshot]](https://gitpod.io/github.com/kitpao/my_enumerable_methods)
 
-In this project we rebuild the following iterator methods used in the enumerator module:
+In this project I rebuild the following iterator methods used in the enumerator module:
 * #each -> #my_each
 * #each_with_index -> #my_each_with_index
 * #select -> #my_select
